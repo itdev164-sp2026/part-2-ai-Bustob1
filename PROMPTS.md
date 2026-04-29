@@ -21,12 +21,25 @@ it updated the files and included a small bio
 
 ### Prompt 2
 **What I asked:**
-> (Paste your second prompt — this could be a follow-up correction or
-> a completely new request)
+Using the shadcn sidebar components that are now in my src/components/ui/ folder,
+create a professional, collapsible dashboard layout. It should include:
 
+1. A sidebar (src/components/app-sidebar.tsx) with navigation links for:
+   - Overview (use the Home icon from lucide-react)
+   - Projects (use the FolderOpen icon)
+   - Settings (use the Settings icon)
+
+2. A top navigation area with breadcrumbs showing the current page.
+
+3. A main content area that wraps the existing page content.
+
+4. Update src/app/layout.tsx to use the new SidebarProvider and sidebar layout.
+
+Important: Preserve the Developer Profile content from Activity 1 in
+src/app/page.tsx — it should appear in the main content area of the new layout.
+Keep the dark mode toggle working.
 **What happened:**
-> (Describe the result. Did you have to "steer" the Agent?
-> What did you learn about writing effective prompts?)
+it did everything perfectly!
 
 ### Reflection
 > Write 2-3 sentences reflecting on the experience. How did it feel
