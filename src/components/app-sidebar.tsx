@@ -15,17 +15,17 @@ import {
 const navItems = [
   {
     title: "Overview",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
     title: "Projects",
-    url: "#",
+    url: "/projects",
     icon: FolderOpen,
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/settings",
     icon: Settings,
   },
 ]
