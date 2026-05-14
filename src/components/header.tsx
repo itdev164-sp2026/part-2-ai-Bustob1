@@ -3,14 +3,7 @@
 import { BookOpen } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { BreadcrumbNav } from "@/components/breadcrumb-nav";
 import { Separator } from "@/components/ui/separator";
 
 export function Header() {
@@ -27,17 +20,7 @@ export function Header() {
         <ModeToggle />
       </header>
       <div className="flex items-center gap-4 border-b border-border bg-background px-4 py-3">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Profile</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        <BreadcrumbNav />
       </div>
     </>
   );
