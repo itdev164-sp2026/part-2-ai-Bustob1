@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export default async function ProjectsPage() {
   const { data: projects } = await supabase.from('Projects').select('*');
@@ -42,6 +44,9 @@ export default async function ProjectsPage() {
               Browse through my completed and ongoing projects.
             </p>
           </div>
+          <Button asChild size="sm">
+            <Link href="/projects/new">New Project</Link>
+          </Button>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
