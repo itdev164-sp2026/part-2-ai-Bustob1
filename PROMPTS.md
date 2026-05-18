@@ -93,3 +93,32 @@ fixed the navigation on the page and made it usuable
 > noticed? Did anything surprise you about how simple server-side
 > data fetching is in the App Router?
 I think its incredibly impressive, It feels so fast and efficient.
+
+## Activity 4: AI-Driven Forms & Validation
+
+### Prompt 1
+
+**What I asked:**
+Create a Zod validation schema in a new file src/lib/schemas.ts for a "Project" with fields: title (min 3 chars with custom error), description (min 10 chars with custom error), and status enum (active, completed, archived). Export both the schema and inferred TypeScript type using z.infer.
+
+**What happened:**
+The Ai created the Zod schema with all required fields and validation rules. It included custom error messages for both title and description. It also exported TypeScript type using z.infer<typeof projectSchema>, which makes sure the type stays in sync with the schema automatically.
+
+### Prompt 2
+
+**What I asked:**
+Using the Zod schema from src/lib/schemas.ts, create a project form using react-hook-form with zodResolver, shadcn/ui Field components, and a Server Action that validates input again with Zod before inserting into the Supabase projects table. Also create a new page for the form and add a "New Project" button on the projects page.
+**What happened:**
+The Ai generated multiple files correctly, including the form component, server action, and new page route. The form was connected to react-hook-form with zodResolver, and validation errors displayed under each field. The Server Action included "use server" and re-validated the data using the same Zod schema before inserting into Supabase. The "New Project" button correctly linked to /projects/new.
+
+### Prompt 3 (if applicable)
+
+**What I asked:**
+Fix any issues with form submission, ensure Sonner toast notifications appear on success, and verify that server-side validation is working correctly in the Server Action.
+**What happened:**
+The Agent adjusted the form submission flow so that successful submissions triggered a Sonner toast notification. It also ensured the Server Action returned proper success/error responses and confirmed that server-side validation with Zod runs before any database insert. Any missing imports or component wiring issues were corrected.
+
+### Reflection
+Schema-first with Zod lets you define the rules once and use them everywhere. That way both the form and the server agree on what’s valid, so bad data doesn’t go into the datbase, very effiencet.
+
+This way feels much cleaner than before!
