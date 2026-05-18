@@ -1,6 +1,9 @@
 "use client"
 
+import type { User } from "@supabase/supabase-js"
+
 import { Home, FolderOpen, Settings } from "lucide-react"
+
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +15,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+
 import { Button } from "@/components/ui/button"
 import { signOutAction } from "@/app/actions"
 
@@ -33,12 +37,13 @@ const navItems = [
   },
 ]
 
-export function AppSidebar({ user }: { user: { id: string } | null }) {
+export function AppSidebar({ user }: { user: User | null }) {
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
@@ -55,7 +60,7 @@ export function AppSidebar({ user }: { user: { id: string } | null }) {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {user ? (
+        {user && (
           <SidebarFooter>
             <form action={signOutAction} className="px-2 pb-3">
               <Button type="submit" variant="ghost" size="sm" className="w-full">
@@ -63,7 +68,7 @@ export function AppSidebar({ user }: { user: { id: string } | null }) {
               </Button>
             </form>
           </SidebarFooter>
-        ) : null}
+        )}
       </SidebarContent>
     </Sidebar>
   )

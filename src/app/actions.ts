@@ -28,7 +28,7 @@ export async function signInAction(
     }
   }
 
-  const supabase = createServerActionSupabaseClient()
+  const supabase = await createServerActionSupabaseClient()
   const { error } = await supabase.auth.signInWithPassword(parsed.data)
 
   if (error) {
@@ -53,7 +53,7 @@ export async function signUpAction(
     }
   }
 
-  const supabase = createServerActionSupabaseClient()
+  const supabase = await createServerActionSupabaseClient()
   const { error } = await supabase.auth.signUp(parsed.data)
 
   if (error) {
@@ -64,7 +64,7 @@ export async function signUpAction(
 }
 
 export async function signOutAction(): Promise<void> {
-  const supabase = createServerActionSupabaseClient()
+  const supabase = await createServerActionSupabaseClient()
   const { error } = await supabase.auth.signOut()
 
   if (error) {
@@ -86,7 +86,7 @@ export async function createProjectAction(
     }
   }
 
-  const supabase = createServerActionSupabaseClient()
+  const supabase = await createServerActionSupabaseClient()
   const {
     data: { user },
     error: userError,

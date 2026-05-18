@@ -4,7 +4,7 @@ import { AuthCard } from "@/components/auth-card"
 import { createServerComponentSupabaseClient } from "@/lib/supabase/server"
 
 export default async function LoginPage() {
-  const supabase = createServerComponentSupabaseClient()
+  const supabase = await createServerComponentSupabaseClient()
   const { data } = await supabase.auth.getUser()
 
   if (data.user) {
