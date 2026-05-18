@@ -1,32 +1,35 @@
-import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
-import { AppSidebar } from "@/components/app-sidebar";
-import {
-  SidebarProvider,
-  SidebarInset,
-} from "@/components/ui/sidebar";
-import "./globals.css";
-import { cn } from "@/lib/utils";
+import type { Metadata } from "next"
+import { Inter, Geist } from "next/font/google"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Header } from "@/components/header"
+import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
+import "./globals.css"
+import { cn } from "@/lib/utils"
+import { createServerComponentSupabaseClient } from "@/lib/supabase/server"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-});
+})
 
 export const metadata: Metadata = {
   title: "Bruno Bustos — Developer Profile",
   description: "Developer profile for Bruno Bustos showcasing skills and career goals.",
-};
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
+  const supabase = await createServerComponentSupabaseClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className={`${inter.variable} font-sans antialiased`}>
@@ -37,7 +40,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <AppSidebar />
+            <AppSidebar user={user} />
             <SidebarInset>
               <Header />
               <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
@@ -48,5 +51,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

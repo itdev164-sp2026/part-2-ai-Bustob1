@@ -10,8 +10,8 @@ type CookieRecord = {
   options?: Record<string, unknown>
 }
 
-function createCookieStore() {
-  const cookieStore = cookies()
+async function createCookieStore() {
+  const cookieStore = await cookies()
 
   return {
     getAll: () => cookieStore.getAll().map(({ name, value }) => ({ name, value })),
@@ -23,8 +23,8 @@ function createCookieStore() {
   }
 }
 
-export function createServerComponentSupabaseClient() {
-  const cookieStore = createCookieStore()
+export async function createServerComponentSupabaseClient() {
+  const cookieStore = await createCookieStore()
 
   return createServerClient(supabaseUrl, supabaseKey, {
     cookies: {
@@ -34,6 +34,6 @@ export function createServerComponentSupabaseClient() {
   })
 }
 
-export function createServerActionSupabaseClient() {
+export async function createServerActionSupabaseClient() {
   return createServerComponentSupabaseClient()
 }

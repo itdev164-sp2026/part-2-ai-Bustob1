@@ -13,8 +13,8 @@ type Project = {
 }
 
 export default async function ProjectsPage() {
-  const supabase = createServerComponentSupabaseClient()
-  const { data: projects } = await supabase.from<Project>("Projects").select("*")
+  const supabase = await createServerComponentSupabaseClient()
+  const { data: projects } = await supabase.from("Projects").select("*")
 
   const getStatusColor = (status: string) => {
     switch (status) {
