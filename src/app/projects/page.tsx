@@ -1,11 +1,20 @@
-import Link from "next/link";
-import { supabase } from "@/lib/supabase";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import Link from "next/link"
+
+import { createServerComponentSupabaseClient } from "@/lib/supabase/server"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+
+type Project = {
+  id: string | number
+  title: string
+  description: string
+  status: string
+}
 
 export default async function ProjectsPage() {
-  const { data: projects } = await supabase.from('Projects').select('*');
+  const supabase = createServerComponentSupabaseClient()
+  const { data: projects } = await supabase.from<Project>("Projects").select("*")
 
   const getStatusColor = (status: string) => {
     switch (status) {

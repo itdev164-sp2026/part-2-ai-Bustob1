@@ -4,6 +4,7 @@ import { Home, FolderOpen, Settings } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,6 +12,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button"
+import { signOutAction } from "@/app/actions"
 
 const navItems = [
   {
@@ -30,7 +33,7 @@ const navItems = [
   },
 ]
 
-export function AppSidebar() {
+export function AppSidebar({ user }: { user: { id: string } | null }) {
   return (
     <Sidebar>
       <SidebarContent>
@@ -51,6 +54,16 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {user ? (
+          <SidebarFooter>
+            <form action={signOutAction} className="px-2 pb-3">
+              <Button type="submit" variant="ghost" size="sm" className="w-full">
+                Sign Out
+              </Button>
+            </form>
+          </SidebarFooter>
+        ) : null}
       </SidebarContent>
     </Sidebar>
   )

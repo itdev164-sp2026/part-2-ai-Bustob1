@@ -6,4 +6,9 @@ export const projectSchema = z.object({
   status: z.enum(["active", "completed", "archived"]),
 });
 
+export const authSchema = z.object({
+  email: z.string().email("Enter a valid email"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
+
 export type Project = z.infer<typeof projectSchema>;
